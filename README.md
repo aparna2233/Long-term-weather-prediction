@@ -21,7 +21,6 @@ A modern web application that predicts weather conditions (rain probability, tem
 
 ### Backend (Python/Flask)
 - **Flask API**: RESTful API for weather predictions
-- **Scikit-learn**: Random Forest models for ML predictions
 - **Data Generation**: Synthetic weather data with realistic patterns
 - **Models**: Separate models for rain probability, temperature, and AQI
 
@@ -232,8 +231,4 @@ Created with ❤️ for weather prediction enthusiasts
 - Leaflet for the mapping library
 - Scikit-learn for ML models
 - React community for excellent documentation
-
----
-
-**Note**: This application uses synthetic data for demonstration purposes. For production use, integrate real historical weather data and APIs for current conditions.
 
