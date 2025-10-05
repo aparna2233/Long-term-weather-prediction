@@ -7,6 +7,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
 import numpy as np
+import os
 from datetime import datetime, timedelta
 from nasa_data import NASADataFetcher
 
@@ -226,5 +227,9 @@ def predict_weather():
         return jsonify({"error": str(e)}), 400
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5002)
+    # Use PORT from environment variable (for Render/Heroku) or default to 5002 for local
+    port = int(os.environ.get('PORT', 5002))
+    # Disable debug mode in production
+    debug = os.environ.get('FLASK_ENV') != 'production'
+    app.run(debug=debug, host='0.0.0.0', port=port)
 
