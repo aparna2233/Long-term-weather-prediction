@@ -44,6 +44,20 @@ def get_nasa_climate_data(latitude, longitude, day_of_year):
         print(f"NASA API error: {e}")
         return None, False
 
+@app.route('/', methods=['GET'])
+def home():
+    """Root endpoint - API information."""
+    return jsonify({
+        "name": "Weather Prediction API",
+        "version": "1.0",
+        "description": "Long-term weather prediction using NASA Earth Observation Data and Machine Learning",
+        "endpoints": {
+            "/health": "Health check endpoint",
+            "/predict": "Weather prediction endpoint (POST)"
+        },
+        "status": "running"
+    })
+
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint."""
