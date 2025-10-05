@@ -100,6 +100,10 @@ function App() {
     try {
       // Use environment variable for API URL, fallback to localhost for development
       const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5002';
+      console.log('🔍 Debug - API URL being used:', API_URL);
+      console.log('🔍 Debug - Full endpoint:', `${API_URL}/predict`);
+      console.log('🔍 Debug - Environment variables:', process.env);
+      
       const response = await axios.post(`${API_URL}/predict`, {
         latitude: position.lat,
         longitude: position.lng,
@@ -108,7 +112,10 @@ function App() {
 
       setPrediction(response.data);
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to get prediction. Make sure the backend is running.');
+      console.error('❌ Prediction error:', err);
+      console.error('❌ Error response:', err.response);
+      console.error('❌ Error message:', err.message);
+      setError(err.response?.data?.error || `Failed to get prediction: ${err.message}`);
     } finally {
       setLoading(false);
     }
