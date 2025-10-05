@@ -98,7 +98,9 @@ function App() {
     setPrediction(null);
 
     try {
-      const response = await axios.post('http://localhost:5002/predict', {
+      // Use environment variable for API URL, fallback to localhost for development
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5002';
+      const response = await axios.post(`${API_URL}/predict`, {
         latitude: position.lat,
         longitude: position.lng,
         date: date,
